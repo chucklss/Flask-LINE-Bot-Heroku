@@ -8,8 +8,17 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
+# import selenium
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# import os
+import os
+
 # import our pre-defined functions
-from tktube_scrape import url_extraction_RPA
+from tktube_scrape import url_extraction_RPA_heroku
 
 app = Flask(__name__)
 
@@ -36,8 +45,12 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    # catch incoming message text
     get_message = event.message.text
 
+    # scrape url
+    url_message = url_extraction_RPA(get_message)
+
     # Send To Line
-    reply = TextSendMessage(text=f"{get_message}")
+    reply = TextSendMessage(text=f"{url_message}")
     line_bot_api.reply_message(event.reply_token, reply)
