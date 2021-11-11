@@ -32,9 +32,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 ## Define Function
+# <off-line version>
 def url_extraction_RPA(target_url):
-	# step 0) browser setup
-	# set path: chromdriver
+    # step 0) browser setup
+    # set path: chromdriver
     path_driver = './chromedriver.exe'
     # set path: Brave browser
     path_brave = "C:/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"
@@ -50,6 +51,54 @@ def url_extraction_RPA(target_url):
 
     # open browser
     browser = webdriver.Chrome(executable_path = path_driver, chrome_options = options)
+
+    # step 1) go to certain website
+    browser.get(target_url)
+
+    # step 2) extract video name
+    vid_name = browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/h1').text
+
+    # step 3) extract video url
+    frame = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/div[4]/iframe')
+    browser.switch_to_frame(frame)
+    element = browser.find_element_by_css_selector("#_iframe_content > center > button")
+    element.click()
+
+    # element = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/div[3]/div[1]')
+    # element.click()
+    
+    while True:
+        temp = browser.find_elements_by_xpath('//*[@id="kt_player"]/div[2]/div[1]/div[5]/div[2]')
+        time.sleep(5)
+        if len(temp) > 0:
+            break
+    browser.execute_script('document.getElementsByTagName("video")[0].pause()')
+    vid_url = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/video')
+    vid_url = vid_url.get_attribute('src')
+
+    py2line(f'\n網址:\n{vid_url}\n名稱:{vid_name}')
+
+    browser.close()
+
+# <heroku version>
+def url_extraction_RPA_heroku(target_url):
+    # step 0) browser setup
+    # set path: chromdriver
+    # path_driver = './chromedriver.exe'
+    # set path: Brave browser
+    # path_brave = "C:/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"
+
+    # create options-carrier
+    options = webdriver.ChromeOptions()
+
+    # set browser application location
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # set browser arguments
+    options.add_argument('--incognito')  # incognito mode
+    options.add_argument('--disable-notifications')  # disable notifications
+
+    # open browser
+    browser = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH"), chrome_options = options)
 
     # step 1) go to certain website
     browser.get(target_url)
