@@ -49,7 +49,7 @@ def handle_message(event):
     get_message = event.message.text
 
     # scrape url
-    url_message = url_extraction_RPA_heroku(get_message)
+    # url_message = url_extraction_RPA_heroku(get_message)
 
     # Send To Line
     # reply = TextSendMessage(text=f"{url_message}")
