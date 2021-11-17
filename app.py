@@ -53,5 +53,5 @@ def handle_message(event):
 
     # Send To Line
     # reply = TextSendMessage(text=f"{url_message}")
-    reply = TextSendMessage(text="123123")
+    reply = TextSendMessage(text="123456")
     line_bot_api.reply_message(event.reply_token, reply)
