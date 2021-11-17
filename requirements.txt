@@ -14,4 +14,3 @@ urllib3
 werkzeug
 
 selenium
-time
