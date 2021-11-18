@@ -42,10 +42,11 @@ def callback():
 def handle_message(event):
     # catch incoming message text
     get_message = event.message.text
-    groupID = event.source.groupID
+    # groupID = event.source.groupID
     userID = event.source.userID
 
-    reply = TextSendMessage(text=f"GroupID:\n{groupID}\n\nUserID:\n{userID}")
+    # reply = TextSendMessage(text=f"GroupID:\n{groupID}\n\nUserID:\n{userID}")
+    reply = TextSendMessage(text=f"UserID:\n{userID}")
     line_bot_api.reply_message(event.reply_token, reply)
 
     if get_message.startswith('http'):
