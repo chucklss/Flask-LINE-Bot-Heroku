@@ -44,16 +44,16 @@ def handle_message(event):
     get_message = event.message.text
 
     if get_message.startswith('http'):
-        reply = TextSendMessage(text="this is a web")
+        reply1 = TextSendMessage(text="this is a web")
     else:
-        reply = TextSendMessage(text="this is not a web")
+        reply1 = TextSendMessage(text="this is not a web")
     # line_bot_api.reply_message(event.reply_token, reply)
     # line_bot_api.reply_message(event.reply_token, reply)
     # line_bot_api.reply_message(event.reply_token, reply)
 
     # scrape url
-    reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
-    line_bot_api.reply_message(event.reply_token, reply)
+    reply2 = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
+    line_bot_api.reply_message(event.reply_token, [reply1, reply2])
     url_message = url_extraction_RPA_heroku(get_message)
 
     # Send To Line
