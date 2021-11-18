@@ -47,7 +47,9 @@ def handle_message(event):
         reply = TextSendMessage(text="this is a web")
     else:
         reply = TextSendMessage(text="this is not a web")
-    line_bot_api.reply_message(event.reply_token, reply)
+    # line_bot_api.reply_message(event.reply_token, reply)
+    # line_bot_api.reply_message(event.reply_token, reply)
+    # line_bot_api.reply_message(event.reply_token, reply)
 
     # scrape url
     reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
