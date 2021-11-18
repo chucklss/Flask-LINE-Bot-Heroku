@@ -43,7 +43,7 @@ def handle_message(event):
     # catch incoming message text
     get_message = event.message.text
     # groupID = event.source.groupID
-    userID = event.source.userID
+    userID = event[0].source.userID
 
     # reply = TextSendMessage(text=f"GroupID:\n{groupID}\n\nUserID:\n{userID}")
     reply = TextSendMessage(text=f"UserID:\n{userID}")
