@@ -53,6 +53,7 @@ def handle_message(event):
     # scrape url
     reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
     line_bot_api.push_message(event.reply_token, reply)
+    line_bot_api.reply_message(event.reply_token, reply)
     url_message = url_extraction_RPA_heroku(get_message)
 
     # Send To Line
