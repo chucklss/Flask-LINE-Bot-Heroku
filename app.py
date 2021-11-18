@@ -109,7 +109,7 @@ def url_extraction_RPA_heroku(target_url):
 
     # step 3) extract video url
     frame = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/div[4]/iframe')
-    browser.switch_to_frame(frame)
+    browser.switch_to.frame(frame)
     element = browser.find_element_by_css_selector("#_iframe_content > center > button")
     element.click()
 
