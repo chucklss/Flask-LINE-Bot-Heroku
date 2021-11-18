@@ -45,12 +45,14 @@ def handle_message(event):
 
     py2line(f'The message is {get_message}')
 
-    # if get_message.startswith('http'):
-    #     reply = TextSendMessage(text="this is a web")
-    # else:
-    #     reply = TextSendMessage(text="this is not a web")
+    if get_message.startswith('http'):
+        reply = TextSendMessage(text="this is a web")
+        py2line(f'The message is {get_message}, 123')
+    else:
+        reply = TextSendMessage(text="this is not a web")
+        py2line(f'The message is {get_message}, 456')
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
-    # line_bot_api.reply_message(event.reply_token, reply)
+    line_bot_api.reply_message(event.reply_token, reply)
 
     # scrape url
     # reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
