@@ -53,6 +53,6 @@ def handle_message(event):
     url_message = url_extraction_RPA_heroku(get_message)
 
     # Send To Line
-    reply = TextSendMessage(text=f"{url_message}")
-    # reply = TextSendMessage(text="123456")
+    # reply = TextSendMessage(text=f"{url_message}")
+    reply = TextSendMessage(text="123456")
     line_bot_api.reply_message(event.reply_token, reply)
