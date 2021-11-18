@@ -88,7 +88,11 @@ def url_extraction_RPA_heroku(target_url):
     # set browser arguments
     # options.add_argument('--incognito')  # incognito mode
     # options.add_argument('--disable-notifications')  # disable notifications
+    # https://github.com/heroku/heroku-buildpack-google-chrome
     options.add_argument('--headless')
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--remote-debugging-port=9222")
 
     # open browser
     py2line('Opening Chrome...')
