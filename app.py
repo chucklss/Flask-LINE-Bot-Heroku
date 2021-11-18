@@ -47,13 +47,13 @@ def handle_message(event):
         reply = TextSendMessage(text="this is a web")
     else:
         reply = TextSendMessage(text="this is not a web")
-    line_bot_api.push_message(event.reply_token, reply)
+    line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
     # line_bot_api.reply_message(event.reply_token, reply)
 
     # scrape url
     reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
-    line_bot_api.push_message(event.reply_token, reply)
-    line_bot_api.reply_message(event.reply_token, reply)
+    line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
+    # line_bot_api.reply_message(event.reply_token, reply)
     url_message = url_extraction_RPA_heroku(get_message)
 
     # Send To Line
@@ -71,7 +71,7 @@ def url_extraction_RPA_heroku(target_url):
 
     # create options-carrier
     reply = TextSendMessage(text="Opening up Chrome...")
-    line_bot_api.push_message(event.reply_token, reply)
+    line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
     options = webdriver.ChromeOptions()
 
     # set browser application location
@@ -85,7 +85,7 @@ def url_extraction_RPA_heroku(target_url):
 
     # step 1) go to certain website
     reply = TextSendMessage(text="Going to URL...")
-    line_bot_api.push_message(event.reply_token, reply)
+    line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
     browser.get(target_url)
 
     # step 2) extract video name
@@ -107,14 +107,14 @@ def url_extraction_RPA_heroku(target_url):
             break
 
     reply = TextSendMessage(text="Waiting Complete...")
-    line_bot_api.push_message(event.reply_token, reply)
+    line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
 
     browser.execute_script('document.getElementsByTagName("video")[0].pause()')
     vid_url = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/video')
     vid_url = vid_url.get_attribute('src')
 
     reply = TextSendMessage(text="URL fetched...")
-    line_bot_api.push_message(event.reply_token, reply)
+    line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
 
     # py2line(f'\n網址:\n{vid_url}\n名稱:{vid_name}')
 
