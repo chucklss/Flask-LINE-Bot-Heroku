@@ -43,6 +43,8 @@ def handle_message(event):
     # catch incoming message text
     get_message = event.message.text
 
+    py2line(f'The message is {get_message}')
+
     # if get_message.startswith('http'):
     #     reply = TextSendMessage(text="this is a web")
     # else:
@@ -54,7 +56,9 @@ def handle_message(event):
     # reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
     # line_bot_api.reply_message(event.reply_token, reply)
+    py2line('Initializing Extraction...')
     url_message = url_extraction_RPA_heroku(get_message)
+    py2line('Extraction Finished...')
 
     # Send To Line
     # reply = TextSendMessage(text=f"{url_message}")
@@ -63,6 +67,8 @@ def handle_message(event):
 
 
 def url_extraction_RPA_heroku(target_url):
+
+    py2line('Entering RPA Process...')
     # step 0) browser setup
     # set path: chromdriver
     # path_driver = './chromedriver.exe'
@@ -116,8 +122,24 @@ def url_extraction_RPA_heroku(target_url):
     # reply = TextSendMessage(text="URL fetched...")
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
 
-    # py2line(f'\n網址:\n{vid_url}\n名稱:{vid_name}')
+    py2line(f'\n網址:\n{vid_url}\n名稱:{vid_name}')
 
     browser.close()
 
     return vid_url
+
+# set token: 烤秋芹啦
+# main function
+# define function:
+def lineNotifyMessage(token, msg):
+    headers = {
+        "Authorization": "Bearer " + token, 
+        "Content-Type" : "application/x-www-form-urlencoded"
+    }
+
+    payload = {'message': msg}
+    r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params = payload)
+    return r.status_code
+
+def py2line(msg, token = 'WDXqcwrhMAYxVzU9DbAzLwWzuLbKFzBgWk20YvNi0OP'):
+    lineNotifyMessage(token, msg)
