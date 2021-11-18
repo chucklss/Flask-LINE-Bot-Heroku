@@ -49,15 +49,15 @@ def handle_message(event):
         reply = TextSendMessage(text="this is not a web")
     line_bot_api.reply_message(event.reply_token, reply)
 
-    # # scrape url
-    # reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
-    # line_bot_api.reply_message(event.reply_token, reply)
-    # url_message = url_extraction_RPA_heroku(get_message)
+    # scrape url
+    reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
+    line_bot_api.reply_message(event.reply_token, reply)
+    url_message = url_extraction_RPA_heroku(get_message)
 
-    # # Send To Line
-    # # reply = TextSendMessage(text=f"{url_message}")
-    # reply = TextSendMessage(text=f"Fetched URL: \n{url_message}")
-    # line_bot_api.reply_message(event.reply_token, reply)
+    # Send To Line
+    # reply = TextSendMessage(text=f"{url_message}")
+    reply = TextSendMessage(text=f"Fetched URL: \n{url_message}")
+    line_bot_api.reply_message(event.reply_token, reply)
 
 
 def url_extraction_RPA_heroku(target_url):
