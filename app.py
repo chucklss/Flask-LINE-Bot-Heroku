@@ -86,15 +86,18 @@ def url_extraction_RPA_heroku(target_url):
     # set browser application location
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # set browser arguments
-    options.add_argument('--incognito')  # incognito mode
-    options.add_argument('--disable-notifications')  # disable notifications
+    # options.add_argument('--incognito')  # incognito mode
+    # options.add_argument('--disable-notifications')  # disable notifications
+    options.add_argument('--headless')
 
     # open browser
+    py2line('Opening Chrome...')
     browser = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH"), chrome_options = options)
 
     # step 1) go to certain website
     # reply = TextSendMessage(text="Going to URL...")
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
+    py2line('Going to URL...')
     browser.get(target_url)
 
     # step 2) extract video name
