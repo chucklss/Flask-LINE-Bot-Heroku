@@ -93,7 +93,7 @@ def url_extraction_RPA_heroku(target_url):
     options.add_argument('--headless')
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
-    options.add_argument("--remote-debugging-port=9222")
+    # options.add_argument("--remote-debugging-port=9222")
 
     # open browser
     py2line('Opening Chrome...')
@@ -137,7 +137,7 @@ def url_extraction_RPA_heroku(target_url):
 
     py2line(f'\n網址:\n{vid_url}\n名稱:{vid_name}')
 
-    browser.close()
+    browser.quit()
 
     return vid_url
 
