@@ -135,8 +135,15 @@ def url_extraction_RPA_heroku(target_url):
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
 
     browser.execute_script('document.getElementsByTagName("video")[0].pause()')
-    vid_url = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/video')
-    vid_url = vid_url.get_attribute('src')
+    
+    while True:
+        temp = browser.find_elements_by_xpath('//*[@id="kt_player"]/div[2]/video')
+        time.sleep(5)
+        if len(temp) > 0:
+            vid_url = temp.get_attribute('src')
+            break
+    # vid_url = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/video')
+    # vid_url = vid_url.get_attribute('src')
 
     # reply = TextSendMessage(text="URL fetched...")
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
