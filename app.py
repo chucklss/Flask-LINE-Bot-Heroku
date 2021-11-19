@@ -127,18 +127,20 @@ def url_extraction_RPA_heroku(target_url):
     
     while True:
         temp = browser.find_elements_by_xpath('//*[@id="kt_player"]/div[2]/div[1]/div[5]/div[2]')
-        time.sleep(5)
+        time.sleep(4)
+        py2line('try1')
         if len(temp) > 0:
             break
 
     # reply = TextSendMessage(text="Waiting Complete...")
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
 
-    browser.execute_script('document.getElementsByTagName("video")[0].pause()')
+    # browser.execute_script('document.getElementsByTagName("video")[0].pause()')
     
     while True:
         temp = browser.find_elements_by_xpath('//*[@id="kt_player"]/div[2]/video')
-        time.sleep(5)
+        time.sleep(4)
+        py2line('try2')
         if len(temp) > 0:
             vid_url = temp.get_attribute('src')
             break
