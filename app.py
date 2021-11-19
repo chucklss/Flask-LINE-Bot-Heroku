@@ -114,7 +114,7 @@ def url_extraction_RPA_heroku(target_url):
 
     # step 2) extract video name
     vid_name = browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/h1').text
-    py2line(f"Vid Name: \n{vid_name}")
+    # py2line(f"Vid Name: \n{vid_name}")
 
     # step 3) extract video url
     frame = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/div[4]/iframe')
