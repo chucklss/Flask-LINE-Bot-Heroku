@@ -103,7 +103,8 @@ def url_extraction_RPA_heroku(target_url):
     # reply = TextSendMessage(text="Going to URL...")
     # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
     py2line('Going to URL...')
-    py2line(f'Target URL:\n{target_url}')
+    url = target_url.strip(' ').strip(',')
+    py2line(f'Target URL:\n{url}')
     browser.get(target_url)
 
     # step 2) extract video name
