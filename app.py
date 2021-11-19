@@ -94,7 +94,7 @@ def url_extraction_RPA_heroku(target_url):
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--remote-debugging-port=9222")
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--window-size=1920x1080")
     options.add_argument('--no-proxy-server')
     options.add_argument("--proxy-server='direct://'")
     options.add_argument("--proxy-bypass-list=*")
@@ -113,7 +113,13 @@ def url_extraction_RPA_heroku(target_url):
     browser.get(target_url)
 
     # step 2) extract video name
-    vid_name = browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/h1').text
+    while True:
+        temp = browser.find_elements_by_xpath('/html/body/div[2]/div[2]/div[2]/h1')
+        time.sleep(3)
+        if len(temp) > 0:
+            vid_name = temp.text
+            break
+    # vid_name = browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/h1').text
 
     # step 3) extract video url
     frame = browser.find_element_by_xpath('//*[@id="kt_player"]/div[2]/div[4]/iframe')
