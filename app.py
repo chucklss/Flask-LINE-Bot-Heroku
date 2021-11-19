@@ -96,8 +96,9 @@ def url_extraction_RPA_heroku(target_url):
     options.add_argument("--remote-debugging-port=9222")
     options.add_argument("--window-size=1920,1080")
     options.add_argument('--no-proxy-server')
-    options.add_argument("--proxy-server='direct://'");
-    options.add_argument("--proxy-bypass-list=*");
+    options.add_argument("--proxy-server='direct://'")
+    options.add_argument("--proxy-bypass-list=*")
+    options.add_argument('--disable-dev-shm-usage')
 
     # open browser
     py2line('Opening Chrome...')
