@@ -47,14 +47,17 @@ def handle_message(event):
 
     # py2line(f'The message is {get_message}')
 
-    if get_message.startswith('http'):
-        reply = TextSendMessage(text="this is a web")
-        # py2line(f'The message is {get_message}, 123')
+    if ((get_message.startswith('http')) and (get_message.contains('tktube'))):
+        reply = TextSendMessage(text="Valid URL!")
+        line_bot_api.reply_message(event.reply_token, reply)
+    elif ((get_message.startswith('http')) and !(get_message.contains('tktube'))): 
+        reply = TextSendMessage(text="Invalid web URL~")
+        line_bot_api.reply_message(event.reply_token, reply)
+        return None
     else:
-        reply = TextSendMessage(text="this is not a web")
-        py2line(f'The message is {get_message}, 456')
-    # line_bot_api.push_message('U40afe82f0e8bd295d94c68f6c03c985f', reply)
-    line_bot_api.reply_message(event.reply_token, reply)
+        reply = TextSendMessage(text="Not a web...")
+        line_bot_api.reply_message(event.reply_token, reply)
+        return None
 
     # scrape url
     # reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
