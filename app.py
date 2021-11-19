@@ -53,11 +53,11 @@ def handle_message(event):
     elif ((get_message.startswith('http')) and !(get_message.contains('tktube'))): 
         reply = TextSendMessage(text="Invalid web URL~")
         line_bot_api.reply_message(event.reply_token, reply)
-        return None
+        return 
     else:
         reply = TextSendMessage(text="Not a web...")
         line_bot_api.reply_message(event.reply_token, reply)
-        return None
+        return 
 
     # scrape url
     # reply = TextSendMessage(text=f"Starting to fetch from: \n{get_message}")
